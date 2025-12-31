@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍷 Vinolin AI Prototypes Suite
 
-## Getting Started
+> **A Next.js 14 Full-Stack showcase demonstrating RAG (Retrieval-Augmented Generation) and Computer Vision capabilities tailored for the Digital Wine Industry.**
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-14-black) ![Tailwind](https://img.shields.io/badge/Tailwind-CSS-blue) ![Status](https://img.shields.io/badge/Status-Prototype-green)
 
+## Project Overview
+I built this application to demonstrate how **Vinolin** can leverage Generative AI to solve two specific B2B challenges:
+1.  **Trustworthy Consultation:** A chatbot that strictly adheres to a partner's inventory (no hallucinations).
+2.  **Inventory Digitization:** Converting physical bottle labels into structured database entries.
+
+## Key Modules
+
+### 1. The Digital Cellar (B2B RAG Agent)
+A conversational interface designed for winery websites.
+*   **Feature:** Simulates a RAG (Retrieval-Augmented Generation) pipeline.
+*   **Guardrails:** The AI is instructed to *only* recommend wines from a specific "Partner Catalog," strictly rejecting off-topic queries or hallucinated products.
+*   **Tech:** Next.js App Router, React Server Components, Streaming UI.
+
+### 2. LabelLens (Multimodal Inventory Tool)
+A mobile-first computer vision utility.
+*   **Feature:** Mimics the scanning of a wine bottle to extract metadata (Vintage, Region, Grape).
+*   **Output:** Returns structured JSON data validated via **Zod schemas**, ready for database insertion.
+*   **Tech:** Server Actions, Computer Vision Simulation.
+
+---
+
+## Technical Decisions
+
+### Why "Demo Mode"?
+To ensure a **zero-latency, 100% reliable experience** for the review team, this specific deployment utilizes **Mocked Streaming Responses** in the backend.
+
+Instead of relying on live external API keys (which can rate-limit or fail regionally), I engineered the backend to simulate the exact behavior of an LLM (latency, token streaming, structured output) using native **JavaScript Web Streams** and `setTimeout` simulation.
+
+**This ensures the application works immediately after cloning, with no environment variables required.**
+
+---
+
+## Dependencies & Stack
+This project was initialized with `create-next-app` and uses the following core libraries:
+
+*   **Framework:** `next` (v14+ App Router)
+*   **Styling:** `tailwindcss`, `clsx`, `tailwind-merge`
+*   **Icons:** `lucide-react`
+*   **AI Simulation:** `ai` (Vercel AI SDK patterns)
+*   **Validation:** `zod`
+
+## 💻 Getting Started
+
+You can run this project locally in less than 2 minutes. No API keys needed.
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/adititakale01/vinolin-ai-prototypes.git
+cd vinolin-ai-prototypes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run the Development Server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-## Learn More
+## 📂 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+├── app/
+│   ├── api/chat/route.ts    # Streaming API (Mocked RAG Logic)
+│   ├── actions.ts           # Server Actions (Mocked Vision Logic)
+│   ├── page.tsx             # Main UI (Client Components)
+│   └── layout.tsx           # Root Layout
+├── components/              # Shared UI components
+├── public/                  # Static assets
+└── tailwind.config.ts       # Design system config
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Built by Aditi for the Vinolin.*
