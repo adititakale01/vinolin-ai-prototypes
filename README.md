@@ -82,4 +82,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ---
 
-*Built by Aditi for the Vinolin.*
+*Built by Aditi for Vinolin.*
